@@ -8,9 +8,13 @@ require 'spec_helper'
 
 describe 'node::default' do
   context 'When all attributes are default, on Ubuntu 18.04' do
+    let(:chef_run) do
+    runner = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04')
+    runner.converge(described_recipe)
+    end
     # for a complete list of available platforms and versions see:
     # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-    platform 'ubuntu', '18.04'
+    platform 'ubuntu', '16.04'
 
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
